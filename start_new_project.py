@@ -11,7 +11,7 @@ def main():
 
     n = args.n
     padded_n = f'{n:04}'
-    project_path = f'problem{padded_n}/'
+    project_path = f'problems/problem{padded_n}/'
     if os.path.exists(project_path):
         print('\n*** Error! ***')
         print(
@@ -41,7 +41,7 @@ def main():
     r = s.get(minimal_url)
     minimal_soup = BeautifulSoup(r.text, 'html.parser')
 
-    with open(f'{project_path}PROJECT{padded_n}.md', 'x') as file:
+    with open(f'{project_path}README.md', 'x') as file:
         file.write(f'# [Problem {n} - {problem_title}]({problem_url})\n\n')
         file.write('## Prompt\n\n')
         lines = [f'> {x}' for x in minimal_soup.find_all(True)]

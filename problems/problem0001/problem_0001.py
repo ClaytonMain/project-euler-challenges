@@ -24,7 +24,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-# Printed messages: (SPOILERS)
+# Output (SPOILERS):
 # *** Answer ***
 # > 233168
 

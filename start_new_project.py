@@ -47,7 +47,6 @@ def main():
         file.write('## Prompt\n\n')
         lines = [f'> {x}' for x in minimal_soup.find_all(True)]
         file.write('\n'.join(lines))
-        file.write('\n\n## Explanation of Solution (Spoilers Ahead!)\n')
 
     with open(f'{project_path}problem_{padded_n}.py', 'x') as file:
         file.writelines(

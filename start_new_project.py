@@ -58,11 +58,12 @@ def main():
                 '\tpass\n\n\n',
                 'def main():\n',
                 f'\tans = p{padded_n}()\n',
-                "\tprint(f'\\n*** Answer ***\\n> {ans}')\n\n",
+                "\tprint(f'\\n*** Answer ***\\n{ans}')\n\n",
                 '\tif TIME_FUNCTION:\n',
                 f"\t\thfs.time_function('p{padded_n}')\n\n\n",
                 "if __name__ == '__main__':\n",
-                '\tmain()',
+                '\tmain()\n\n',
+                '# Output (SPOILERS)',
             ]
         )
 

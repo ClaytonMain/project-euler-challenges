@@ -2,7 +2,7 @@
 from timeit import timeit
 
 
-def time_function(func_name, number=10000):
+def time_function(func_name, number=100):
     stmt = f'{func_name}()'
     setup = f'from __main__ import {func_name}'
     t = timeit(stmt, setup, number=number)

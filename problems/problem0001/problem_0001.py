@@ -1,10 +1,9 @@
 # Project Euler: Problem 1 - Multiples of 3 or 5
-import helper_funcs as hfs
+# Difficulty rating 5%
+from helperfuncs.helper_funcs import time_decorator
 
 
-TIME_FUNCTION = True
-
-
+@time_decorator()
 def p0001(n1=3, n2=5, maxn=1000):
     # Basic principle of inclusion and exclusion.
     mult_sum = sum(range(n1, maxn, n1))
@@ -15,20 +14,19 @@ def p0001(n1=3, n2=5, maxn=1000):
 
 def main():
     ans = p0001()
-    print(f'\n*** Answer ***\n> {ans}')
-
-    if TIME_FUNCTION:
-        hfs.time_function('p0001')
+    print(f'\n*** Answer ***\n{ans}')
 
 
 if __name__ == '__main__':
     main()
 
 # Output (SPOILERS):
-# *** Answer ***
-# > 233168
-
 # *** Time Stuff ***
-# Executions: 10000
-# Total exec. time: 0.071089s
+# Executions: 100
+# Total exec. time: 0.000745s
 # Avg. exec. time: 0.000007s
+# Fastest: 0.000006s
+# Slowest: 0.000018s
+
+# *** Answer ***
+# 233168

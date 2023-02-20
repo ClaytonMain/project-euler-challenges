@@ -1,12 +1,11 @@
 # Project Euler: Problem 4 - Largest palindrome product
 # Difficulty rating: 5%
-import helper_funcs as hfs
+from helperfuncs.helper_funcs import time_decorator
 
 # See problem_0004_scratch.py for notes & thought processes!
 
-TIME_FUNCTION = True
 
-
+@time_decorator()
 def p0004(digits=3):
     max_factor = 10**digits - 1
     min_factor = 10 ** (digits - 1)
@@ -32,18 +31,17 @@ def main():
     ans = p0004()
     print(f'\n*** Answer ***\n{ans}')
 
-    if TIME_FUNCTION:
-        hfs.time_function('p0004')
-
 
 if __name__ == '__main__':
     main()
 
 # Output (SPOILERS)
-# *** Answer ***
-# 906609
-
 # *** Time Stuff ***
 # Executions: 100
-# Total exec. time: 0.174974s
-# Avg. exec. time: 0.001750s
+# Total exec. time: 0.174795s
+# Avg. exec. time: 0.001748s
+# Fastest: 0.001638s
+# Slowest: 0.001978s
+
+# *** Answer ***
+# 906609

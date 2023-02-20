@@ -1,10 +1,9 @@
 # Project Euler: Problem 2 - Even Fibonacci numbers
-import helper_funcs as hfs
+# Difficulty rating 5%
+from helperfuncs.helper_funcs import time_decorator
 
 
-TIME_FUNCTION = True
-
-
+@time_decorator(1000)
 def p0002(n1=1, n2=2, maxn=4000000):
     # I know the problem tells us to start with 1 and 2, so this part is
     # a bit... extra, but I wanted to write a generalized function.
@@ -23,20 +22,19 @@ def p0002(n1=1, n2=2, maxn=4000000):
 
 def main():
     ans = p0002()
-    print(f'\n*** Answer ***\n> {ans}')
-
-    if TIME_FUNCTION:
-        hfs.time_function('p0002')
+    print(f'\n*** Answer ***\n{ans}')
 
 
 if __name__ == '__main__':
     main()
 
 # Output (SPOILERS)
+# *** Time Stuff ***
+# Executions: 100
+# Total exec. time: 0.000529s
+# Avg. exec. time: 0.000005s
+# Fastest: 0.000004s
+# Slowest: 0.000018s
+
 # *** Answer ***
 # 4613732
-
-# *** Time Stuff ***
-# Executions: 10000
-# Total exec. time: 0.049899s
-# Avg. exec. time: 0.000005s

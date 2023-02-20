@@ -1,4 +1,4 @@
-import helper_funcs as hfs
+from helperfuncs.helper_funcs import time_decorator
 import math
 
 
@@ -37,6 +37,7 @@ import math
 
 
 # Solution 1
+@time_decorator()
 def p0003_solution01(n=600851475143):
     '''
     I actually forgot to save my first solution, so I've defined this function
@@ -46,6 +47,7 @@ def p0003_solution01(n=600851475143):
 
 
 # Solution 2
+@time_decorator()
 def p0003_solution02(n=600851475143):
     # Alrighty, we're making a copy of n (though we could probably just use
     # n, honestly), and initializing an empty list to toss our primes into.
@@ -98,13 +100,14 @@ def p0003_solution02(n=600851475143):
 # value, but it's actually super inefficient for numbers with large prime
 # factors (or for large primes).
 # Here's its calculation times for:
-# n = 600851475143 ... 0.031349s
-# n = 1000000007 ..... 0.293003s
-# n = 10000000019 .... 1.626209s
+# n = 600851475143 ... 0.029378s
+# n = 1000000007 ..... 0.274852s
+# n = 10000000019 .... 1.521634s
 # It's... ok, but we can do better.
 
 
 # Solution 3
+@time_decorator()
 def p0003_solution03(n=600851475143):
     # So again, making a copy of n, but instead of making a list of primes,
     # we can make a *set* of composites.
@@ -150,11 +153,11 @@ def p0003_solution03(n=600851475143):
 
 # So accessing sets is pretty cool. Let's see some calculation speeds
 # for various values of n.
-# n = 600851475143 .... 0.054247s
-# n = 1000000007 ...... 0.005210s
-# n = 10000000019 ..... 0.017189s
-# n = 100000000003 .... 0.057900s
-# n = 1000000000039 ... 0.209653s
+# n = 600851475143 .... 0.049907s
+# n = 1000000007 ...... 0.005378s
+# n = 10000000019 ..... 0.017095s
+# n = 100000000003 .... 0.057224s
+# n = 1000000000039 ... 0.203317s
 # To quote the great Lightning McQueen, "I am speed".
 # "Ok, but why composites and not primes?", you ask again.
 # Yeah, ok, about that...
@@ -164,6 +167,7 @@ def p0003_solution03(n=600851475143):
 # I initially wanted to tackle solution 3 using a set of primes, but I
 # figured the extra function calls would be too much overhead, so I just
 # used composites in that solution. But more on that later.
+@time_decorator()
 def p0003_solution04(n=600851475143):
     # You know the deal with copy_n.
     copy_n = n
@@ -192,11 +196,39 @@ def p0003_solution04(n=600851475143):
 
 
 # ...it actually runs slower.
-# n = 600851475143 .... 0.077592s
-# n = 1000000007 ...... 0.006404s
-# n = 10000000019 ..... 0.020556s
-# n = 100000000003 .... 0.071216s
-# n = 1000000000039 ... 0.222819s
+# n = 600851475143 .... 0.073095s
+# n = 1000000007 ...... 0.006115s
+# n = 10000000019 ..... 0.018486s
+# n = 100000000003 .... 0.069313s
+# n = 1000000000039 ... 0.228864s
 # Guess the difference_update function has more overhead than just a regular
 # update function. So anywho, ended up going with solution 3 in the final
 # problem_0003.py file.
+
+
+def main():
+    test_cfgs = [
+        {'func': p0003_solution02, 'testinds': [0, 1, 2]},
+        {'func': p0003_solution03},
+        {'func': p0003_solution04},
+    ]
+    all_testvals = [
+        600851475143,
+        1000000007,
+        10000000019,
+        100000000003,
+        1000000000039,
+    ]
+    for cfg in test_cfgs:
+        func = cfg['func']
+        testinds = cfg.get('testinds')
+        print(f'\n*****************************\n{func.__name__}:')
+        testvals = all_testvals
+        if testinds:
+            testvals = [all_testvals[n] for n in testinds]
+        for n in testvals:
+            func(n)
+
+
+if __name__ == '__main__':
+    main()

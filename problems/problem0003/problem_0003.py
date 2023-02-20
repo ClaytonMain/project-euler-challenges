@@ -1,13 +1,13 @@
 # Project Euler: Problem 3 - Largest prime factor
-import helper_funcs as hfs
+# Difficulty rating 5%
+from helperfuncs.helper_funcs import time_decorator
 import math
 
 # See problem_0003_scratch.py for notes on this solution and other
 # attempted solutions.
 
-TIME_FUNCTION = True
 
-
+@time_decorator()
 def p0003(n=600851475143):
     copy_n = n
     composites = set()
@@ -28,18 +28,17 @@ def main():
     ans = p0003()
     print(f'\n*** Answer ***\n{ans}')
 
-    if TIME_FUNCTION:
-        hfs.time_function('p0003', 100)
-
 
 if __name__ == '__main__':
     main()
 
 # Output (SPOILERS)
-# *** Answer ***
-# 6857
-
 # *** Time Stuff ***
 # Executions: 100
-# Total exec. time: 4.908501s
-# Avg. exec. time: 0.049085s
+# Total exec. time: 4.693884s
+# Avg. exec. time: 0.046939s
+# Fastest: 0.044662s
+# Slowest: 0.067782s
+
+# *** Answer ***
+# 6857

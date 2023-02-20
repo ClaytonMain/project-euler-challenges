@@ -2,6 +2,7 @@ import argparse
 import os
 import requests
 import re
+from markdownify import MarkdownConverter as MC
 from bs4 import BeautifulSoup
 
 
@@ -47,13 +48,15 @@ def main():
     minimal_soup = BeautifulSoup(r.text, 'html.parser')
 
     with open(f'{project_path}README.md', 'x') as file:
-        file.write(f'# [Problem {n} - {problem_title}]({problem_url})\n')
+        file.write(f'# [Problem {n} - {problem_title}]({problem_url})\n\n')
         file.write(f'{diff_rating}\n\n')
         file.write('## Prompt\n\n')
-        # This probably won't work very well once the problems start
-        # including LaTeX, so that'll likely need a fix later.
-        lines = [f'> {x}' for x in minimal_soup.find_all(True)]
-        file.write('\n'.join(lines))
+        prompt_lines = [
+            f'> {x}'
+            for x in MC().convert_soup(minimal_soup).split('\n')
+            if len(x)
+        ]
+        file.write('\n>\n'.join(prompt_lines))
 
     with open(f'{project_path}problem_{padded_n}.py', 'x') as file:
         file.writelines(

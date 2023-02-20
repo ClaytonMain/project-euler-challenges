@@ -1,7 +1,6 @@
 import argparse
 import os
 import requests
-import shutil
 import re
 from bs4 import BeautifulSoup
 
@@ -61,24 +60,18 @@ def main():
             [
                 f'# Project Euler: Problem {n} - {problem_title}\n',
                 f'# {diff_rating}\n',
-                'import helper_funcs as hfs\n\n\n',
-                'TIME_FUNCTION = False\n\n\n',
+                'from helperfuncs.helper_funcs import time_decorator\n\n\n',
+                '@time_decorator()\n',
                 f'def p{padded_n}():\n',
                 '    pass\n\n\n',
                 'def main():\n',
                 f'    ans = p{padded_n}()\n',
-                "    print(f'\\n*** Answer ***\\n{ans}')\n\n",
-                '    if TIME_FUNCTION:\n',
-                f"        hfs.time_function('p{padded_n}')\n\n\n",
+                "    print(f'\\n*** Answer ***\\n{ans}')\n\n\n",
                 "if __name__ == '__main__':\n",
                 '    main()\n\n',
                 '# Output (SPOILERS)',
             ]
         )
-
-    shutil.copyfile(
-        'helperfuncs/helper_funcs.py', f'{project_path}/helper_funcs.py'
-    )
 
 
 if __name__ == '__main__':

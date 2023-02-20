@@ -1,8 +1,7 @@
 # Custom exclusions
-bin/
-include/
 settings.json
-pyvenv.cfg
+personal_notes.txt
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -6,6 +6,18 @@ from markdownify import MarkdownConverter as MC
 from bs4 import BeautifulSoup
 
 
+def format_prompt_lines(soup: BeautifulSoup) -> str:
+    converted = MC(sup_symbol='^').convert_soup(soup)
+    # Fix images:
+    converted = re.sub(
+        r'(project/images/.*\.png)', r'https://projecteuler.net/\1', converted
+    )
+    # Fix superscript:
+    converted = re.sub(r'\^(\d+)\^', r'<sup>\1</sup>', converted)
+    prompt_lines = [f'> {x}' for x in converted.split('\n') if len(x)]
+    return '\n>\n'.join(prompt_lines)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('n', type=int, help='The problem number')
@@ -51,12 +63,8 @@ def main():
         file.write(f'# [Problem {n} - {problem_title}]({problem_url})\n\n')
         file.write(f'{diff_rating}\n\n')
         file.write('## Prompt\n\n')
-        prompt_lines = [
-            f'> {x}'
-            for x in MC().convert_soup(minimal_soup).split('\n')
-            if len(x)
-        ]
-        file.write('\n>\n'.join(prompt_lines))
+        prompt_lines = format_prompt_lines(minimal_soup)
+        file.write(prompt_lines)
 
     with open(f'{project_path}problem_{padded_n}.py', 'x') as file:
         file.writelines(
